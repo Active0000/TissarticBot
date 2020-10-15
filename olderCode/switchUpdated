@@ -1,0 +1,36 @@
+       if(command === 'bro'){
+            client.commands.get('bro').execute(message, args);
+        } else if (command == `bruh`) {
+            client.commands.get('bruh').execute(message, args);
+        } else if (command == 'activewho?') {
+            client.commands.get('activewho?').execute(message, args);
+        } else if (command == 'say') {
+            client.commands.get('say').execute(message, args);
+        } else if (command == 'today') {
+            client.commands.get('today').execute(message, args);
+        } else if (command == 'tomorrow') {
+            client.commands.get('tomorrow').execute(message, args);
+        } else if (command == 'yesterday') {
+            client.commands.get('yesterday').execute(message, args);
+
+        
+// NOEW CLEANER KICK THAT REQUIRES PERMS     
+        const modRole = message.guild.roles.cache.find(role => role.name === "Mods");
+        if (!modRole)
+            return console.log("The Mods role does not exist");
+
+        if (!message.member.roles.cache.has(modRole.id))
+            return message.reply("You can't use this command.");
+
+        if (message.mentions.members.size === 0)
+            return message.reply("Please mention a user to kick");
+
+        if (!message.guild.me.hasPermission("KICK_MEMBERS"))
+            return message.reply("");
+
+        const kickMember = message.mentions.members.first();
+        let reason = args.slice(1).join(" ");
+
+        kickMember.kick(reason.then(member => {
+            message.reply(`${member.user.username} was succesfully kicked.`);
+        });

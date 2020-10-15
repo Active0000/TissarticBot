@@ -1,0 +1,83 @@
+//PRINTS OUT TWICE
+ switch (command) {
+
+            case 'bro':
+                client.command.get(`bro`).execute(message, args);
+                  break; 
+
+            case 'bruh':
+                client.commands.get('bruh').execute(message, args);
+                  break;  
+
+            case 'say': {       
+                client.commands.get('say').execute(message, args);
+                      break;
+                  } 
+
+            case 'activewho?':
+                client.commands.get('activewho?').execute(message, args);
+                    break; 
+              
+            case 'T':
+                  message.channel.send("Cry some more");
+                      break;
+      
+            case 'today':{
+                  lient.commands.get('today').execute(message, args);
+                      break;
+              }
+      
+            case 'tomorrow':{
+                  client.commands.get('tomorrow').execute(message, args);
+                      break;
+              }
+            case 'yesterday':{
+                  client.commands.get('yesterday').execute(message, args);
+                      break;
+              }
+      
+            case `timer1min`:
+                  message.channel.send("Timer set for 1 minute!");
+                  setTimeout(() => { message.channel.send("It's been 1 minute! @everyone");}, 10000);
+                      break;
+      
+            case `timer5min`:
+                  message.channel.send("Timer set for 5 minutes!");
+                  setTimeout(() => { message.channel.send("It's been 5 minutes! @everyone");}, 300000);
+                      break;
+      
+            case `timer10min`:
+                  message.channel.send("Timer set for 10 minutes!");
+                  setTimeout(() => { message.channel.send("It's been 10 minutes! @everyone");}, 600000);
+                      break;
+      
+            case 'timer1hour':
+                  message.channel.send("Timer set for 1 hour!");
+                  setTimeout(() => { message.channel.send("It's been 1 hour! @everyone");}, 3600000);
+                      break;
+    } 
+});
+
+
+//Old KICK
+            case 'kick':
+            if (!args[0]) message.channel.send('You need to @ a member!');
+
+            const user = message.mentions.users.first();
+    
+            if (user) {
+                const member = message.guild.member(user);
+    
+                if (member) {
+                    member.kick("Member has been kicked.").then(() => {
+                        message.reply(`Sucessfully kicked ${user.tag}`);
+                    }).catch(err => {
+                        message.reply('Unable to kick member.');
+                        console.log(err);
+                    });
+                } else {
+                    message.reply("That user is not in the server.");
+                }
+            } else {
+                message.reply("That user is not in the guild.");         
+                } 

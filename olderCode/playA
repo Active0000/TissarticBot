@@ -1,0 +1,46 @@
+else if (command == 'play'){
+
+            function play(connection, message){
+                var server = servers[message.guild.id];
+
+                server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: "audioonly"}));
+
+                server.queue.shift();
+
+                server.dispatcher.on("finish", function(){
+                       if(server.queue[0]){
+                           play(connection, message);
+                       }else {
+                           connection.disconnect();
+                       }
+                });
+
+            }
+
+            if (!args[0]) {
+                message.channel.send('Need a link!');
+                return;
+            }
+            if(!message.member.voice.channel){
+                message.channel.send("You muct be in a voice channel!");
+                return;
+            }
+            if (!servers[message.guild.id]) servers[message.guild.id] = {
+                queue: []
+            }
+            var server = servers[message.guild.id];
+
+            server.queue.push(args[1]);
+
+            if(!message.guild.voice,connection) message.member.voice.channel.join().then(function(connection){
+                play(connection, message);
+                message.channel.send("Song is playing");
+            })
+
+
+        }
+
+        
+    });
+
+client.login(token);
