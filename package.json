@@ -1,0 +1,19 @@
+{
+  "name": "discordbot",
+  "version": "1.0.0",
+  "description": "Tissartic",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Active0000",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.31",
+    "ms": "^2.1.2",
+    "opusscript": "0.0.7",
+    "ytdl-core": "^3.3.0"
+  }
+}
